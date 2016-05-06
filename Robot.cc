@@ -123,3 +123,81 @@ void Robot::capture(int n){
 }
 
 
+// add_trace function can caculate the new direction of this robot according to another captured robot`s direction.
+
+//written by Jiyu Lei
+void Robot::add_trace(Robot* subject, Robot* object){
+    int x=subject->coordinate_x-object->coordinate_x;
+    int y=subject->coordinate_y-object->coordinate_y;
+    double thetaVector = 90 - atan2(y, x) * 180 / PI;                                   //defination of atan2
+    if (thetaVector < 0) thetaVector += 360;
+    if(object->theta<180){
+        if(thetaVector>object->theta && thetaVector<object->theta+180)
+            subject->trace.push_back(object->getTheta()+90);
+        else{
+            double temp=object->getTheta()-90;
+            if(temp<0) temp+=360;
+            subject->trace.push_back(temp);
+        }
+    }
+    else{
+        if(thetaVector>object->theta-180 && thetaVector<object->theta)
+            subject->trace.push_back(object->getTheta()-90);
+        else{
+            double temp=object->getTheta()+90;
+            if(temp>=360) temp-=360;
+            subject->trace.push_back(temp);
+        }
+    }
+}
+
+//the add_trace_bound funtion caculate the new direction of this robot if it rush into a boundary.
+//written by Jiyu Lei
+void Robot::add_trace_bound(Robot* subject, int n){
+    if(subject->theta<=180){
+        switch (n){
+            case 100: case 300:
+                subject->trace.push_back(180-subject->theta);
+                break;
+            case 200:
+                subject->trace.push_back(360-subject->theta);
+                break;
+            default:
+                break;
+        }
+    }
+    else{
+        switch (n){
+            case 100: case 300:
+                subject->trace.push_back(540-subject->theta);
+                break;
+            case 400:
+                subject->trace.push_back(360-subject->theta);
+                break;
+            default:
+                break;
+        }
+    }
+    
+}
+
+//function go() will update new direction and new location of this robot.
+//written by Jiyu Lei
+void Robot::go(){
+    double newTheta;
+    for(auto i=trace.begin()+1;i<trace.end();i++){
+        if(abs(trace[0]-*i)>180){
+            newTheta=(trace[0]+*i)/2+180;
+            if(newTheta>360) newTheta-=360;
+        }
+        else
+            newTheta=(trace[0]+*i)/2;
+        trace[0]=newTheta;
+    }
+    if(trace.size()!=0) theta=trace[0];
+    trace.clear();
+    coordinate_x+=speed*sin(theta*PI/180);
+    coordinate_y+=speed*cos(theta*PI/180);
+}
+
+
