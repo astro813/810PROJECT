@@ -60,5 +60,35 @@ void Datalayer::clearData(){
 //If it does, this method will call Robot::capture to capture the information of other robots.
 
 void Datalayer::loadData(){
-    
+    for(auto i=robotList.begin();i<robotList.end();i++){    //paint and robot boundaries on the datalayer
+        vector<int> detect;
+        double r=(*i)->getAlert();                          //
+        for(int x=(*i)->getX()-r;x<=(*i)->getX()+r;x++) //x-alert <=x=alert
+            for(int y=(*i)->getY()-sqrt(r*r-(x-(*i)->getX())*(x-(*i)->getX())); //y-sqrt(alert*alert
+                y<=(*i)->getY()+sqrt(r*r-(x-(*i)->getX())*(x-(*i)->getX()));y++)
+            {
+                if(y>=0&&y<400&&x>=0&&x<400)                //to make sure painting will not go out of boundary
+                if(layer[y][x]==0)
+                    layer[y][x]=(*i)->getID()*10+1;         //plus 1 to mark this is an alert area, not a robot itself.
+                else{
+                    int j;
+                    for(j=0; j<detect.size();j++)
+                    {
+                        if(layer[y][x]/10==detect[j]) break;
+                    }
+                    if(j==detect.size()){
+                        (*i)->capture(layer[y][x]/10);
+                        detect.push_back(layer[y][x]/10);
+                    }
+                }
+            }
+    }
+    for(auto i=robotList.begin();i<robotList.end();i++){
+        double r=(*i)->getRadius();
+        for(int x=(*i)->getX()-r;x<=(*i)->getX()+r;x++)
+            for(int y=(*i)->getY()-sqrt(r*r-(x-(*i)->getX())*(x-(*i)->getX()));
+                y<=(*i)->getY()+sqrt(r*r-(x-(*i)->getX())*(x-(*i)->getX()));y++)
+                if(y>=0&&y<400&&x>=0&&x<400)
+                layer[y][x]=(*i)->getID()*10;
+    }    
 }
