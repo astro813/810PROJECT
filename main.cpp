@@ -17,16 +17,18 @@ int main(int argc, char *argv[]){
     RobotGui w;                                            //create GUI
 
     //Lake
-    Robot* LakeA=new Robot(0.0,300.0,300.0,45,35,35,0);
-    Robot* LakeB=new Robot(0.0,350.0,300.0,45,35,35,0);
-    Robot* LakeC=new Robot(0.0,325.0,325.0,45,30,30,0);
-    Robot* LakeD=new Robot(0.0,330.0,275.0,45,30,30,0);
+    //Robot* LakeA=new Robot(0.0,300.0,300.0,45,35,35,0);
+    //Robot* LakeB=new Robot(0.0,350.0,300.0,45,35,35,0);
+    //Robot* LakeC=new Robot(0.0,325.0,325.0,45,30,30,0);
+    //Robot* LakeD=new Robot(0.0,330.0,275.0,45,30,30,0);
+    Robot* LakeE=new Robot(0.0,350.0,350.0,0,50,60,0);
     //(double s,double x,double y,double theta,double r,double a, int ID): speed(s),coordinate_x(x),coordinate_y(y),theta(theta),robotsize_radius(r),alert(a), ID(ID)
 
-    robotList.push_back(LakeA);
+    /*robotList.push_back(LakeA);
     robotList.push_back(LakeB);
     robotList.push_back(LakeC);
-    robotList.push_back(LakeD);
+    robotList.push_back(LakeD);*/
+    robotList.push_back(LakeE);
 
     //Trees
     Robot* TreeA=new Robot(0.0,30.0,330.0,45,5,5,0);
