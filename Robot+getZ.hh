@@ -20,7 +20,7 @@ class Robot;
 //The structure Telecom will record the information of other robots which come into the alert 
 //area of this robot and caculate the distance between this robot to them. 
 
-struct Telecom {
+struct rangeSensor {
     int    number;
     Robot *pointer;
     double distance;
