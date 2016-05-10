@@ -44,7 +44,7 @@ int Map::getWidth() const{
 }
 
 
-void Datalayer::clearData(){
+void Map::clearData(){
     for(int i=1; i<length-1; i++)
         for(int j=1; j<width-1; j++)
             layer[j][i]=0;
@@ -57,6 +57,7 @@ void Datalayer::clearData(){
         layer[i-1][length-1]=2000;
     }
 }
+
 
 //loadData() can estimate whether the alert area of the current robot will overlap others` alert areas.
 //If it does, this method will call Robot::capture to capture the information of other robots.
