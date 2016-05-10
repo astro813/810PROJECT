@@ -5,17 +5,17 @@
 //*************************************************************************************************************
 
 #include "Robot.hh"
-#include "datalayer.hh"
+#include "Map.hh"
 #include <iostream>
 #include <cmath>
 using namespace std;
 
 const double PI=3.1415926;
 
-extern Datalayer myLayer;
+extern Datalayer Layer;
 extern vector<Robot *> robotList;
-//extern double getX();
-//extern double getY();
+extern double getX();
+extern double getY();
 Robot::Robot(){};
 Robot::Robot(double s,double x,double y,double theta,double r,double a, int ID):
     speed(s),coordinate_x(x),coordinate_y(y),theta(theta),robotsize_radius(r),alert(a), ID(ID){}
@@ -24,9 +24,9 @@ Robot::~Robot(){
     count_robots--;
 }
 
-double Robot::getSpeed() const{return speed;}
+double Robot::getVelocity() const{return volocity;}
 
-void Robot::change_speed(int s){speed=s;}
+void Robot::change_velovity(int s){speed=s;}
 
 double Robot::getX() const{return coordinate_x;}
 
@@ -49,9 +49,9 @@ double Robot::getAlert() const {return alert;}
 
 int Robot::getID() const {return ID;}
 
-//the capture funtion can record ID of other robots and boundary which are in the alert area of this robot.
+//the record funtion can record ID of other robots and boundary which are in the alert area of this robot.
 //written Yingsheng Bao
-void Robot::capture(int n){
+void Robot::record(int n){
     bool exist=0;
     auto i=communication.begin();
     for(;i<communication.end();i++)
@@ -64,7 +64,7 @@ void Robot::capture(int n){
         if(n<100){
             newDistance=sqrt((robotList[n]->coordinate_x-coordinate_x)*(robotList[n]->coordinate_x-coordinate_x)+
                              (robotList[n]->coordinate_y-coordinate_y)*(robotList[n]->coordinate_y-coordinate_y));
-            if(newDistance<(*i).distance) {(*i).distance=newDistance; Robot::add_trace(this, robotList[n]);}
+            if(newDistance<(*i).distance) {(*i).distance=newDistance; Robot::newDirection(this, robotList[n]);}
         }
         else{
             switch (n){
@@ -72,10 +72,10 @@ void Robot::capture(int n){
                 newDistance=coordinate_y;
                 break;
             case 200:
-                newDistance=myLayer.getLength()-coordinate_x;
+                newDistance=myMap.getLength()-coordinate_x;
                 break;
             case 300:
-                newDistance=myLayer.getWidth()-coordinate_y;
+                newDistance=myMap.getWidth()-coordinate_y;
                 break;
             case 400:
                 newDistance=coordinate_x;
@@ -83,19 +83,19 @@ void Robot::capture(int n){
             default:
                 break;
             }
-            if(newDistance<(*i).distance) {(*i).distance=newDistance; Robot::add_trace_bound(this, n);}
+            if(newDistance<(*i).distance) {(*i).distance=newDistance; Robot::newDirection_bound(this, n);}
 
         }
     }
     else{
-        Telecom *object=new Telecom;
+        rangeSensor *object=new rangeSensor;
         if(n<100){
             object->pointer=robotList[n];
             object->number=n;
             object->distance=sqrt((robotList[n]->coordinate_x-coordinate_x)*(robotList[n]->coordinate_x-coordinate_x)+
                                 (robotList[n]->coordinate_y-coordinate_y)*(robotList[n]->coordinate_y-coordinate_y));
             communication.push_back(*object);
-            Robot::add_trace(this, robotList[n]);
+            Robot::newDirection(this, robotList[n]);
         }
         else{
             object->number=n;
@@ -106,10 +106,10 @@ void Robot::capture(int n){
                 newDistance=coordinate_y;
                 break;
             case 200:
-                newDistance=myLayer.getLength()-coordinate_x;
+                newDistance=myMap.getLength()-coordinate_x;
                 break;
             case 300:
-                newDistance=myLayer.getWidth()-coordinate_y;
+                newDistance=myMap.getWidth()-coordinate_y;
                 break;
             case 400:
                 newDistance=coordinate_x;
@@ -119,50 +119,50 @@ void Robot::capture(int n){
             }
             object->distance=newDistance;
             communication.push_back(*object);
-            Robot::add_trace_bound(this, n);
+            Robot::newDirection_bound(this, n);
         }
     }
 }
 
 
-// add_trace function can caculate the new direction of this robot according to another captured robot`s direction.
+// newDirection function can caculate the new direction of this robot according to another record robot`s direction.
 
 //written by Jiyu Lei
-void Robot::add_trace(Robot* subject, Robot* object){
+void Robot::newDirection(Robot* subject, Robot* object){
     int x=subject->coordinate_x-object->coordinate_x;
     int y=subject->coordinate_y-object->coordinate_y;
     double thetaVector = 90 - atan2(y, x) * 180 / PI;                                   //defination of atan2
     if (thetaVector < 0) thetaVector += 360;
     if(object->theta<180){
         if(thetaVector>object->theta && thetaVector<object->theta+180)
-            subject->trace.push_back(object->getTheta()+90);
+            subject->direction.push_back(object->getTheta()+90);
         else{
             double temp=object->getTheta()-90;
             if(temp<0) temp+=360;
-            subject->trace.push_back(temp);
+            subject->direction.push_back(temp);
         }
     }
     else{
         if(thetaVector>object->theta-180 && thetaVector<object->theta)
-            subject->trace.push_back(object->getTheta()-90);
+            subject->direction.push_back(object->getTheta()-90);
         else{
             double temp=object->getTheta()+90;
             if(temp>=360) temp-=360;
-            subject->trace.push_back(temp);
+            subject->direction.push_back(temp);
         }
     }
 }
 
-//the add_trace_bound funtion caculate the new direction of this robot if it rush into a boundary.
+//the newDirection_bound funtion caculate the new direction of this robot if it rush into a boundary.
 //written by Jiyu Lei
-void Robot::add_trace_bound(Robot* subject, int n){
+void Robot::newDirection_bound(Robot* subject, int n){
     if(subject->theta<=180){
         switch (n){
             case 100: case 300:
-                subject->trace.push_back(180-subject->theta);
+                subject->direction.push_back(180-subject->theta);
                 break;
             case 200:
-                subject->trace.push_back(360-subject->theta);
+                subject->direction.push_back(360-subject->theta);
                 break;
             default:
                 break;
@@ -171,10 +171,10 @@ void Robot::add_trace_bound(Robot* subject, int n){
     else{
         switch (n){
             case 100: case 300:
-                subject->trace.push_back(540-subject->theta);
+                subject->direction.push_back(540-subject->theta);
                 break;
             case 400:
-                subject->trace.push_back(360-subject->theta);
+                subject->direction.push_back(360-subject->theta);
                 break;
             default:
                 break;
@@ -183,23 +183,21 @@ void Robot::add_trace_bound(Robot* subject, int n){
     
 }
 
-//function go() will update new direction and new location of this robot.
+//function update() will update new direction and new location of this robot.
 //written by Jiyu Lei
-void Robot::go(){
+void Robot::update(){
     double newTheta;
-    for(auto i=trace.begin()+1;i<trace.end();i++){
-        if(abs(trace[0]-*i)>180){
-            newTheta=(trace[0]+*i)/2+180;
+    for(auto i=direction.begin()+1;i<direction.end();i++){
+        if(abs(direction[0]-*i)>180){
+            newTheta=(direction[0]+*i)/2+180;
             if(newTheta>360) newTheta-=360;
         }
         else
-            newTheta=(trace[0]+*i)/2;
-        trace[0]=newTheta;
+            newTheta=(direction[0]+*i)/2;
+        direction[0]=newTheta;
     }
-    if(trace.size()!=0) theta=trace[0];
-    trace.clear();
-    coordinate_x+=speed*sin(theta*PI/180);
-    coordinate_y+=speed*cos(theta*PI/180);
+    if(direction.size()!=0) theta=direction[0];
+    direction.clear();
+    coordinate_x+=velocity*sin(theta*PI/180);
+    coordinate_y+=velocity*cos(theta*PI/180);
 }
-
-
