@@ -1,8 +1,11 @@
 // Author:Jiyu Lei
 
-#include "robotgui.h"
+#include "gui.h"
 #include "ui_robotgui.h"
 #include <QtWidgets>
+
+extern Map myMap;
+extern vector<Robot *> robotList;
 
 extern Datalayer myLayer;
 extern vector<Robot *> robotList;
