@@ -1,14 +1,15 @@
 //****************************************************************************************
 //Discription: this file Define a logic layer of playground for robots to run 
 //****************************************************************************************
-#ifndef DATALAYER_HH
-#define DATALAYER_HH
+#ifndef MAP_HH
+#define MAP_HH
 
 #include "Robot.hh"
 #include <math.h>
 
-//The class Datalayer makes a logic layer to record robots` locations, radiuses, alert area.
+//This class saves the location, position, size of the robot
 //It is also used for checking collision between robots. 
+
 
 class Datalayer{
 private:
