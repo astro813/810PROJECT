@@ -11,15 +11,15 @@
 //It is also used for checking collision between robots. 
 
 
-class Datalayer{
+class Map{
 private:
     int length;
     int width;
     int **layer;
 public:
-    Datalayer(int ,int);
+    Map(int ,int);
 
-    ~Datalayer();
+    ~Map();
 
     void changeLen(int);
 
@@ -29,10 +29,11 @@ public:
 
     int getWidth() const;
 
-    void clearData();       //clear everything on datalayer
+    void clearData();       //clear everything on the map
 
-    void loadData();        //paint and robot boundaries on the datalayer
+    void avoidCrash();        //create the boundary of the map
 };
 
-#endif // DATALAYER_HH
+#endif // MAP_HH
+
 
