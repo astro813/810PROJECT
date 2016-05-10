@@ -22,26 +22,27 @@ Map::Map(int l, int w):length(l),width(w){
 }
 
 
-Datalayer::~Datalayer()
+Map::~Map()
 {
     delete [] layer;
 }
 
-void Datalayer::changeLen(int l){
+void Map::changeLen(int l){
     length=l;
 }
 
-void Datalayer::changeWid(int w){
+void Map::changeWid(int w){
     width=w;
 }
 
-int Datalayer::getLength() const{
+int Map::getLength() const{
     return length;
 }
 
-int Datalayer::getWidth() const{
+int Map::getWidth() const{
     return width;
 }
+
 
 void Datalayer::clearData(){
     for(int i=1; i<length-1; i++)
