@@ -1,4 +1,7 @@
-//Author Jiyu Lei
+//***********************************************************************************
+//Author: Hanyu Zhang
+//Discription: This file define the details in user interface
+//***********************************************************************************
 
 #include "robotgui.h"
 #include "ui_robotgui.h"
@@ -8,41 +11,41 @@ extern Datalayer myLayer;
 extern vector<Robot *> robotList;
 
 RobotGui::RobotGui(QWidget *parent) :
-QDialog(parent),
-ui(new Ui::RobotGui)
+    QDialog(parent),
+    ui(new Ui::RobotGui)
 {
     ui->setupUi(this);
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()),this,SLOT(update()));                             //if timeout then run paintevent();
     timer->start(100);                                                                 //set time as 100ms
-    
+
     setWindowTitle(tr("Robot Simulator"));                                             //define the title of the window
     QSize mySize(myLayer.getLength()+200,myLayer.getWidth()+100);                      //define the size of the window
     this->resize(mySize);
-    ui->pushButton->setGeometry(myLayer.getLength()/2-120,myLayer.getWidth()+40,80,20);
-    ui->pushButton_2->setGeometry(myLayer.getLength()/2+40,myLayer.getWidth()+40,80,20); //layout widgets
-    ui->label->setGeometry(myLayer.getLength()+5,5,70,20);
-    ui->label1->setGeometry(myLayer.getLength()+5,30,70,20);
-    ui->label2->setGeometry(myLayer.getLength()+5,55,70,20);
-    ui->label3->setGeometry(myLayer.getLength()+5,80,70,20);
-    ui->label4->setGeometry(myLayer.getLength()+5,105,70,20);
-    ui->label5->setGeometry(myLayer.getLength()+5,130,70,20);
-    ui->label6->setGeometry(myLayer.getLength()+5,155,70,20);
-    ui->lineEdit->setGeometry(myLayer.getLength()+80,5,70,20);
-    ui->lineEdit_1->setGeometry(myLayer.getLength()+80,30,70,20);
-    ui->lineEdit_2->setGeometry(myLayer.getLength()+80,55,70,20);
-    ui->lineEdit_3->setGeometry(myLayer.getLength()+80,80,70,20);
-    ui->lineEdit_4->setGeometry(myLayer.getLength()+80,105,70,20);
-    ui->lineEdit_5->setGeometry(myLayer.getLength()+80,130,70,20);
-    ui->lineEdit_6->setGeometry(myLayer.getLength()+80,155,70,20);
-    ui->label_2->setGeometry(myLayer.getLength()+5,200,52,20);
-    ui->lineEdit_7->setGeometry(myLayer.getLength()+80,200,50,20);
-    ui->label_3->setGeometry(myLayer.getLength()+5,225,52,20);
-    ui->label_4->setGeometry(myLayer.getLength()+80,225,120,20);
-    ui->label_5->setGeometry(myLayer.getLength()+5,250,52,20);
-    ui->label_6->setGeometry(myLayer.getLength()+80,250,70,20);
-    ui->label_7->setGeometry(myLayer.getLength()+5,275,52,20);
-    ui->label_8->setGeometry(myLayer.getLength()+80,275,70,20);
+    ui->pushButton->setGeometry(myLayer.getLength()+15,430,80,20);
+    ui->pushButton_2->setGeometry(myLayer.getLength()+15,300,80,20); //layout widgets
+    ui->label->setGeometry(20,myLayer.getWidth()+15,70,20);
+    ui->label1->setGeometry(20,myLayer.getWidth()+35,70,20);
+    ui->label2->setGeometry(20,myLayer.getWidth()+55,70,20);
+    ui->label3->setGeometry(20,myLayer.getWidth()+75,70,20);
+    ui->label4->setGeometry(200,myLayer.getWidth()+15,70,20);
+    ui->label5->setGeometry(200,myLayer.getWidth()+35,70,20);
+    ui->label6->setGeometry(200,myLayer.getWidth()+55,90,20);
+    ui->lineEdit->setGeometry(100,myLayer.getWidth()+15,70,20);
+    ui->lineEdit_1->setGeometry(100,myLayer.getWidth()+35,70,20);
+    ui->lineEdit_2->setGeometry(100,myLayer.getWidth()+55,70,20);
+    ui->lineEdit_3->setGeometry(100,myLayer.getWidth()+75,70,20);
+    ui->lineEdit_4->setGeometry(280,myLayer.getWidth()+15,70,20);
+    ui->lineEdit_5->setGeometry(280,myLayer.getWidth()+35,70,20);
+    ui->lineEdit_6->setGeometry(280,myLayer.getWidth()+55,70,20);
+    ui->label_2->setGeometry(myLayer.getLength()+20,50,52,20);
+    ui->lineEdit_7->setGeometry(myLayer.getLength()+20,80,50,20);
+    ui->label_3->setGeometry(myLayer.getLength()+20,110,60,20);
+    ui->label_4->setGeometry(myLayer.getLength()+20,140,120,20);
+    ui->label_5->setGeometry(myLayer.getLength()+20,170,52,20);
+    ui->label_6->setGeometry(myLayer.getLength()+20,200,70,20);
+    ui->label_7->setGeometry(myLayer.getLength()+20,230,52,20);
+    ui->label_8->setGeometry(myLayer.getLength()+20,275,70,20);
 }
 
 RobotGui::~RobotGui()
@@ -68,14 +71,14 @@ void RobotGui::paintEvent(QPaintEvent *e){                                      
         QPoint myCenter(robotList[i]->getX(),robotList[i]->getY());
         painter2.setPen(AlertC);
         painter2.save();
-        painter2.drawEllipse(myCenter,robotList[i]->getAlert(),robotList[i]->getAlert());
+        //painter2.drawEllipse(myCenter,robotList[i]->getAlert(),robotList[i]->getAlert());
         painter.setPen(Qt::NoPen);
         painter.setBrush(robotC);
         painter.save();
-        painter.drawEllipse(myCenter,robotList[i]->getRadius(),robotList[i]->getRadius());
+        //painter.drawEllipse(myCenter,robotList[i]->getRadius(),robotList[i]->getRadius());
         robotList[i]->go();                                                               //robot move;
     }
-    
+
 }
 
 void RobotGui::on_pushButton_clicked()                                                    //push button "New Robot" then add a new robot.
@@ -112,4 +115,3 @@ void RobotGui::on_pushButton_2_clicked()
     QString degree=QString::number(robotList[id]->getTheta(),'g',6);
     ui->label_8->setText(degree);
 }
-
