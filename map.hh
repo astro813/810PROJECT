@@ -28,6 +28,8 @@ public:
     int getLength() const;
 
     int getWidth() const;
+    
+    //double getZ();       //when getZ() used
 
     void clearData();       //clear everything on the map
 
