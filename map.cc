@@ -3,7 +3,7 @@ using namespace std;
 extern vector<Robot *> robotList;
 
 
-Datalayer::Datalayer(int l, int w):length(l),width(w){
+Map::Map(int l, int w):length(l),width(w){
     layer=new int*[w+1];
     for(int i=0; i<=w;i++){
         layer[i]=new int[l+1];
@@ -20,6 +20,7 @@ Datalayer::Datalayer(int l, int w):length(l),width(w){
         for(int j=1; j<w-1; j++)
             layer[j][i]=0;
 }
+
 
 Datalayer::~Datalayer()
 {
