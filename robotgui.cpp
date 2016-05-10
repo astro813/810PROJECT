@@ -1,7 +1,4 @@
-//***********************************************************************************
-//Author: Hanyu Zhang
-//Discription: This file define the details in user interface
-//***********************************************************************************
+// Author:Jiyu Lei
 
 #include "robotgui.h"
 #include "ui_robotgui.h"
