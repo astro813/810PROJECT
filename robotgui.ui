@@ -6,9 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>485</width>
-    <height>397</height>
+    <width>685</width>
+    <height>508</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>.SF NS Text</family>
+   </font>
   </property>
   <property name="windowTitle">
    <string>RobotGui</string>
@@ -16,22 +21,31 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>440</x>
      <y>350</y>
      <width>81</width>
      <height>21</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial Black</family>
+     <pointsize>11</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
    <property name="text">
-    <string>New Robot</string>
+    <string>Add Robot</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_1">
    <property name="geometry">
     <rect>
-     <x>382</x>
-     <y>20</y>
-     <width>91</width>
+     <x>80</x>
+     <y>380</y>
+     <width>111</width>
      <height>23</height>
     </rect>
    </property>
@@ -39,24 +53,36 @@
   <widget class="QLabel" name="label1">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>20</y>
+     <x>20</x>
+     <y>380</y>
      <width>51</width>
      <height>16</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Chalkboard</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>Speed </string>
+    <string>Velocity</string>
    </property>
   </widget>
   <widget class="QLabel" name="label2">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>50</y>
+     <x>20</x>
+     <y>410</y>
      <width>59</width>
      <height>15</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Chalkboard</family>
+     <pointsize>15</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>X</string>
@@ -65,11 +91,17 @@
   <widget class="QLabel" name="label3">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>80</y>
+     <x>20</x>
+     <y>440</y>
      <width>59</width>
      <height>15</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Chalkboard</family>
+     <pointsize>15</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Y</string>
@@ -78,11 +110,17 @@
   <widget class="QLabel" name="label4">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>150</y>
+     <x>230</x>
+     <y>350</y>
      <width>59</width>
      <height>15</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Chalkboard</family>
+     <pointsize>15</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Theta</string>
@@ -91,11 +129,17 @@
   <widget class="QLabel" name="label5">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>180</y>
+     <x>230</x>
+     <y>390</y>
      <width>59</width>
-     <height>15</height>
+     <height>20</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Chalkboard</family>
+     <pointsize>15</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Radius</string>
@@ -104,11 +148,17 @@
   <widget class="QLabel" name="label6">
    <property name="geometry">
     <rect>
-     <x>318</x>
-     <y>210</y>
-     <width>71</width>
+     <x>230</x>
+     <y>420</y>
+     <width>91</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Chalkboard</family>
+     <pointsize>15</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Alert Range</string>
@@ -117,21 +167,27 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>240</y>
+     <x>20</x>
+     <y>350</y>
      <width>59</width>
      <height>15</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Chalkboard</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>ID</string>
+    <string>Robot #</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>40</y>
+     <x>80</x>
+     <y>350</y>
      <width>113</width>
      <height>23</height>
     </rect>
@@ -140,8 +196,8 @@
   <widget class="QLineEdit" name="lineEdit_2">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>80</y>
+     <x>80</x>
+     <y>410</y>
      <width>113</width>
      <height>23</height>
     </rect>
@@ -150,8 +206,8 @@
   <widget class="QLineEdit" name="lineEdit_3">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>120</y>
+     <x>80</x>
+     <y>440</y>
      <width>113</width>
      <height>23</height>
     </rect>
@@ -160,8 +216,8 @@
   <widget class="QLineEdit" name="lineEdit_4">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>150</y>
+     <x>280</x>
+     <y>350</y>
      <width>113</width>
      <height>23</height>
     </rect>
@@ -170,8 +226,8 @@
   <widget class="QLineEdit" name="lineEdit_5">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>180</y>
+     <x>280</x>
+     <y>390</y>
      <width>113</width>
      <height>23</height>
     </rect>
@@ -180,9 +236,9 @@
   <widget class="QLineEdit" name="lineEdit_6">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>210</y>
-     <width>113</width>
+     <x>320</x>
+     <y>420</y>
+     <width>71</width>
      <height>23</height>
     </rect>
    </property>
@@ -190,40 +246,58 @@
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>350</y>
+     <x>440</x>
+     <y>400</y>
      <width>80</width>
      <height>20</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial Black</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>show status</string>
+    <string>Robot status</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>280</y>
+     <x>440</x>
+     <y>110</y>
      <width>59</width>
      <height>15</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Chalkboard</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>ID</string>
+    <string>Robot#</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>300</y>
+     <x>440</x>
+     <y>230</y>
      <width>59</width>
      <height>15</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>location</string>
+    <string>Location</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -242,14 +316,20 @@
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>320</y>
+     <x>440</x>
+     <y>190</y>
      <width>59</width>
      <height>15</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>speed</string>
+    <string>Speed</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_6">
@@ -268,14 +348,20 @@
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>340</y>
+     <x>440</x>
+     <y>280</y>
      <width>59</width>
      <height>15</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>degree</string>
+    <string>Angle</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_8">
@@ -294,8 +380,8 @@
   <widget class="QLineEdit" name="lineEdit_7">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>270</y>
+     <x>440</x>
+     <y>150</y>
      <width>51</width>
      <height>23</height>
     </rect>
