@@ -20,23 +20,23 @@ RobotGui::RobotGui(QWidget *parent) :
     QSize mySize(myLayer.getLength()+200,myLayer.getWidth()+100);                      //define the size of the window
     this->resize(mySize);
     ui->pushButton->setGeometry(myLayer.getLength()+15,430,100,20); //add new robot
-    ui->pushButton_2->setGeometry(myLayer.getLength()+15,300,100,20); //layout widgets //show status
-    ui->label->setGeometry(20,myLayer.getWidth()+15,90,20);
-    ui->label1->setGeometry(20,myLayer.getWidth()+35,90,20);
-    ui->label2->setGeometry(20,myLayer.getWidth()+55,90,20);
-    ui->label3->setGeometry(20,myLayer.getWidth()+75,90,20);
-    ui->label4->setGeometry(200,myLayer.getWidth()+15,90,20);
-    ui->label5->setGeometry(200,myLayer.getWidth()+35,90,20);
-    ui->label6->setGeometry(200,myLayer.getWidth()+55,110,20);
+    ui->pushButton_2->setGeometry(myLayer.getLength()+15,300,100,20);  //show status
+    ui->label->setGeometry(20,myLayer.getWidth()+15,90,20); 
+    ui->label1->setGeometry(20,myLayer.getWidth()+35,90,20);//velocity
+    ui->label2->setGeometry(20,myLayer.getWidth()+55,90,20);//x
+    ui->label3->setGeometry(20,myLayer.getWidth()+75,90,20);//y
+    ui->label4->setGeometry(200,myLayer.getWidth()+15,90,20);//theta
+    ui->label5->setGeometry(200,myLayer.getWidth()+35,90,20);//radius
+    ui->label6->setGeometry(200,myLayer.getWidth()+55,110,20);//alert range
     ui->lineEdit->setGeometry(100,myLayer.getWidth()+15,70,20);
     ui->lineEdit_1->setGeometry(100,myLayer.getWidth()+35,70,20);
-    ui->lineEdit_2->setGeometry(100,myLayer.getWidth()+55,70,20);
-    ui->lineEdit_3->setGeometry(100,myLayer.getWidth()+75,70,20);
+    ui->lineEdit_2->setGeometry(100,myLayer.getWidth()+55,70,20);//robot
+    ui->lineEdit_3->setGeometry(100,myLayer.getWidth()+75,70,20);//location
     ui->lineEdit_4->setGeometry(280,myLayer.getWidth()+15,70,20);
-    ui->lineEdit_5->setGeometry(280,myLayer.getWidth()+35,70,20);
+    ui->lineEdit_5->setGeometry(280,myLayer.getWidth()+35,70,20);//speed
     ui->lineEdit_6->setGeometry(300,myLayer.getWidth()+55,70,20);
     ui->label_2->setGeometry(myLayer.getLength()+20,50,80,20);
-    ui->lineEdit_7->setGeometry(myLayer.getLength()+20,80,50,20);
+    ui->lineEdit_7->setGeometry(myLayer.getLength()+20,80,50,20);//angle
     ui->label_3->setGeometry(myLayer.getLength()+20,110,80,20);
     ui->label_4->setGeometry(myLayer.getLength()+20,140,120,20);
     ui->label_5->setGeometry(myLayer.getLength()+20,170,65,20);
