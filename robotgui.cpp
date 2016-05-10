@@ -53,7 +53,7 @@ RobotGui::~RobotGui()
 void RobotGui::paintEvent(QPaintEvent *e){                                               //painting;
     QPainter painter(this);
     QPainter painter2(this);
-    painter.setRenderHint(QPainter::Antialiasing);                                       //antialiasing
+    painter.setRenderHint(QPainter::Antialiasing);                                       //make shape more smooth
     QColor robotC(127,0,127);
     QColor boundC(127,127,0);
     QColor AlertC(0,127,127);
