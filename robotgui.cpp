@@ -68,11 +68,11 @@ void RobotGui::paintEvent(QPaintEvent *e){                                      
         QPoint myCenter(robotList[i]->getX(),robotList[i]->getY());
         painter2.setPen(AlertC);
         painter2.save();
-        //painter2.drawEllipse(myCenter,robotList[i]->getAlert(),robotList[i]->getAlert());
+        painter2.drawEllipse(myCenter,robotList[i]->getAlert(),robotList[i]->getAlert());
         painter.setPen(Qt::NoPen);
         painter.setBrush(robotC);
         painter.save();
-        //painter.drawEllipse(myCenter,robotList[i]->getRadius(),robotList[i]->getRadius());
+        painter.drawEllipse(myCenter,robotList[i]->getRadius(),robotList[i]->getRadius());
         robotList[i]->go();                                                               //robot move;
     }
 
