@@ -9,15 +9,15 @@
 
 using namespace std;
 
-//The class Robot can store basic parameters of a robot such as speed, direction, location, etc.
+//The class Robot can store basic parameters of a robot such as velocity, direction, location, etc.
 //And it defines some funtions which can prevent robots from collision. 
 
 class Robot;
 
-//The structure Telecom will record the information of other robots which come into the alert 
+//The structure rangeSensor will record the information of other robots which come into the alert
 //area of this robot and caculate the distance between this robot to them. 
 
-struct Telecom {
+struct rangeSensor {
     int    number;
     Robot *pointer;
     double distance;
@@ -26,23 +26,23 @@ struct Telecom {
 class Robot{
 private:
     int ID;                                                          //The ID of each robot
-    double speed;                                                    //robot moving speed;
+    double velocity;                                                    //robot moving velocity;
     double coordinate_x;
     double coordinate_y;                                             //location in the coordinate x,y;
     double theta;                                                    //set north as degree 0;
     double robotsize_radius;                                         //set robot as a circle;
     double alert;                                                    //set the alert range;
-    vector<Telecom> communication;                                   //A vector to record Telecom structure;
-    vector<double> trace;                                            //A vector to record new directions of this robot; 
+    vector<rangeSensor> communication;                                   //A vector to record rangeSensor structure;
+    vector<double> direction;                                            //A vector to record new directions of this robot;
     static int count_robots;                                         //How many robots in this place;
 public:
     Robot(double ,double ,double ,double ,double ,double, int);
 
     ~Robot();
 
-    double getSpeed() const;
+    double getVelocity() const;
 
-    void change_speed(int);
+    void change_velocity(int);
 
     double getX() const;
 
@@ -62,13 +62,13 @@ public:
 
     int getID() const;
 
-    void capture(int);                                            //capture information from near object;
+    void record(int);                                            //record information from near object;
 
-    void add_trace(Robot* ,Robot*);
+    void newDirection(Robot* ,Robot*);
 
-    void add_trace_bound(Robot*, int);
+    void newDirection_bound(Robot*, int);
 
-    void go();
+    void update();
 };
 
 #endif // ROBOT_HH
