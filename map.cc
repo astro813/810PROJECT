@@ -1,7 +1,7 @@
-//Description: complete methods in datalayer.hh
-
-#include "datalayer.hh"
+#include "map.hh"
 using namespace std;
+extern vector<Robot *> robotList;
+
 
 Datalayer::Datalayer(int l, int w):length(l),width(w){
     layer=new int*[w+1];
